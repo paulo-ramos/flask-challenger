@@ -1,0 +1,60 @@
+version: "3.9"
+
+volumes:
+  db-vol:
+
+services:
+
+  db:
+    image: mysql:latest
+    container_name: db
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "true"      
+      MYSQL_DATABASE: dbeldorado
+    restart: always
+    volumes:
+      - db-vol:/var/lib/mysql
+    ports:
+      - "3306:3306"
+
+  dbseeder:
+    image: mysql:latest
+    container_name: dbseeder
+    volumes:
+      - ./db/init.sql:/init.sql
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "true"
+    entrypoint: [ "bash", "-c", "sleep 10 && mysql --user=root --host=db --port=3306 dbeldorado < /init.sql && exit"] 
+    depends_on:
+      - db
+
+  phpmyadmin:
+      build: ./pma
+      container_name: phpmyadmin
+      restart: unless-stopped
+      ports:
+          - 8080:80
+      depends_on:
+        - db
+        - dbseeder
+
+  app:
+    build: ./server
+    environment:
+      - DBHOST=db
+    depends_on:
+      - db
+    volumes:
+      - ./server/todo/:/usr/src/app/todo
+    ports:
+      - "8000:8000"
+
+  web: 
+    build: ./client
+    container_name: react-app
+    volumes: 
+      - ./client/:/app
+    ports:
+      - 3000:3000
+    depends_on:
+      - app   

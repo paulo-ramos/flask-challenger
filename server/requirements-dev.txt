@@ -1,0 +1,11 @@
+flask
+flask_sqlalchemy
+flask_cors
+protobuf
+pymysql
+mysql-connector-python
+mysqlclient
+pytest
+pytest-flask
+pytest-cov
+
