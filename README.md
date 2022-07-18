@@ -2,6 +2,7 @@
 ### O QUE É
 Aplicação de cadastro de tarefas (ToDos)
 
+Python React MySql material-ui typescript flask SQLAlchemy docker-compose
 ### A QUEM SE DESTINA / OBJETIVO
 A qualquer pessoa interessada em Python, React, Mysql e Docker.
 Foi desenvolvida com o objetivo de aprendizado/treino de novas habilidades.
@@ -12,7 +13,7 @@ Foi desenvolvida com o objetivo de aprendizado/treino de novas habilidades.
 • Digite: `docker-compose up --build` para instalar:
     • Mysql
     • phpMyAdmin (opcional)
-    • Seeder - script de criação do banco de dados e pula alguns dados de exemplo
+    • Seeder - script de criação do banco de dados e popular alguns dados de exemplo
     • APP - Aplicação backend em python
     • Web - Aplicação frontend em React
 
@@ -31,3 +32,4 @@ Muito obrigado pela atenção.
 Paulo Henrique Ramos de Moura
 paulo_ramos@live.com
 paulo@ramos.dev.br
+(19)99702-1515
